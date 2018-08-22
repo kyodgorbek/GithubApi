@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">GithubApi</string>
+    <string name="userName">userName</string>
+    <string name="avatar">Ávatars</string>
+    <string name="followers">Followers</string>
+    <string name="repositories">Repositories</string>
+</resources>
