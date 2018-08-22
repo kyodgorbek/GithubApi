@@ -26,6 +26,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
     private List<Github> githubs;
     private Context context;
     private GithubAdapterListener listener;
+    private List<Github> githubListFiltered;
 
 
 
@@ -88,7 +89,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    view.onContactSelected()
+                    listener.onContactSelected(githubListFiltered.get(getAdapterPosition()));
                 }
             });
 
@@ -109,12 +110,12 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getName().toLowerCase().contains(charString.toLowerCase()) || row.getPhone().contains(charSequence)) {
+                        if (row.getName().toLowerCase().contains(charString.toLowerCase()) || row.getFollowersUrl().contains(charSequence)) {
                             filteredList.add(row);
                         }
                     }
 
-                    githubs= filteredList;
+                    githubListFiltered = filteredList;
                 }
 
                 FilterResults filterResults = new FilterResults();
@@ -124,13 +125,13 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                 = (ArrayList<Github>) filterResults.values;
+
                 notifyDataSetChanged();
             }
         };
     }
 
-    public interface ContactsAdapterListener {
+    public interface GithubAdapterListener {
         void onContactSelected(Github githublistFiltered);
     }
 }
