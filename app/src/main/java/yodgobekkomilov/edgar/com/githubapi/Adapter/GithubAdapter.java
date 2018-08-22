@@ -49,7 +49,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        Github github = githubs.get(position);
+        Github github = githubListFiltered.get(position);
         holder.userName.setText(github.getName());
 
         Picasso.with(holder.avatar.getContext())
@@ -67,10 +67,10 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
     @Override
     public int getItemCount() {
-        if (githubs != null){
+        if (githubListFiltered != null){
 
     }
-        return githubs.size();
+        return githubListFiltered.size();
     }
 
 
