@@ -103,7 +103,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String charString = charSequence.toString();
                 if (charString.isEmpty()) {
-                    GithubAdapterListener = githubs;
+                    githubListFiltered = githubs;
                 } else {
                     List<Github> filteredList = new ArrayList<>();
                     for (Github row : githubs) {
