@@ -1,6 +1,7 @@
 package yodgobekkomilov.edgar.com.githubapi;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import yodgobekkomilov.edgar.com.githubapi.Adapter.GithubAdapter;
+
 import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 import yodgobekkomilov.edgar.com.githubapi.pojo.GithubClient;
 import yodgobekkomilov.edgar.com.githubapi.pojo.GithubService;
@@ -24,6 +26,7 @@ private Github githubArrayList;
 private ProgressDialog pDialog;
 private RecyclerView recyclerView;
 private GithubAdapter eAdapter;
+
 
 
 
@@ -60,8 +63,9 @@ public void onResponse(Call<Github> call, Response<Github> response) {
          * Got Successfully
          */
         githubArrayList = response.body();
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        eAdapter = new GithubAdapter(Collections.singletonList((Github) githubArrayList));
+        eAdapter = new GithubAdapter(Collections.singletonList((Github)  githubArrayList ));
         RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(eLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
