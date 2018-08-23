@@ -30,7 +30,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
 
 
-    public GithubAdapter(List<Github> githubs, GithubAdapterListener listener) {
+    public GithubAdapter(List<Github> githubs) {
 
         this.githubs = githubs;
         this.listener = listener;
@@ -59,7 +59,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
                 // To fit image into imageView
 
 
-        // To prevent fade animati
+        // To prevent fade animation
         holder.followers.setText(String.valueOf(github.getFollowers()));
         holder.repositories.setText(String.valueOf(github.getPublicRepos()));
 
@@ -125,14 +125,14 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
+                 githubListFiltered = (List<Github>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
     }
 
     public interface GithubAdapterListener {
-        void onContactSelected(Github githublistFiltered);
+        void onContactSelected(Github github);
     }
 }
 
