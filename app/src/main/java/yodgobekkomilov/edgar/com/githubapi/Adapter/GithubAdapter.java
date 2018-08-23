@@ -21,7 +21,7 @@ import java.util.List;
 import yodgobekkomilov.edgar.com.githubapi.R;
 import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 
-public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomViewHolder>  implements Filterable{
+ class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomViewHolder>  implements Filterable{
 
     private List<Github> githubs;
     private Context context;
@@ -34,6 +34,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
         this.githubs = githubs;
         this.listener = listener;
+
 
     }
 
@@ -67,11 +68,12 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
     @Override
     public int getItemCount() {
-        if (githubListFiltered != null){
 
-    }
+            List<Github> githubListFiltered = (List<Github>) new Github();
         return githubListFiltered.size();
     }
+
+
 
 
 
