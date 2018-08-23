@@ -2,11 +2,17 @@ package yodgobekkomilov.edgar.com.githubapi;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +40,11 @@ private GithubAdapter eAdapter;
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.toolbar_title);
+
 
         pDialog = new ProgressDialog(MainActivity.this);
         pDialog.setMessage("Loading Data.. Please wait...");
@@ -80,3 +91,42 @@ public void onFailure(Call<Github> call, Throwable t) {
         });
         }
         }
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+                // Handle action bar item clicks here. The action bar will
+                // automatically handle clicks on the Home/Up button, so long
+                // as you specify a parent activity in AndroidManifest.xml.
+                int id = item.getItemId();
+
+                //noinspection SimplifiableIfStatement
+                if (id == R.id.action_search) {
+                        return true;
+                }
+
+                return super.onOptionsItemSelected(item);
+        }
+
+        @Override
+        public void onBackPressed() {
+                // close search view on back button pressed
+                if (!searchView.isIconified()) {
+                        searchView.setIconified(true);
+                        return;
+                }
+                super.onBackPressed();
+        }
+
+        private void whiteNotificationBar(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        int flags = view.getSystemUiVisibility();
+                        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                        view.setSystemUiVisibility(flags);
+                        getWindow().setStatusBarColor(Color.WHITE);
+                }
+        }
+
+        @Override
+        public void onContactSelected(Contact contact) {
+                Toast.makeText(getApplicationContext(), "Selected: " + contact.getName() + ", " + contact.getPhone(), Toast.LENGTH_LONG).show();
+        }
+}
