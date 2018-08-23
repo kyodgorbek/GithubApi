@@ -15,13 +15,14 @@ import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 import yodgobekkomilov.edgar.com.githubapi.R;
 import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 
- class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomViewHolder>  implements Filterable{
+ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomViewHolder>  implements Filterable{
 
     private List<Github> githubs;
     private Context context;
@@ -50,6 +51,7 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
+
         Github github = githubListFiltered.get(position);
         holder.userName.setText(github.getName());
 
@@ -69,7 +71,7 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
     @Override
     public int getItemCount() {
 
-            List<Github> githubListFiltered = (List<Github>) new Github();
+             githubListFiltered = Collections.singletonList(new Github());
         return githubListFiltered.size();
     }
 
