@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.Collections;
@@ -27,70 +28,71 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.GithubClient;
 import yodgobekkomilov.edgar.com.githubapi.pojo.GithubService;
 
 
-public class MainActivity extends AppCompatActivity{
-private Github githubArrayList;
-private ProgressDialog pDialog;
-private RecyclerView recyclerView;
-private GithubAdapter eAdapter;
+public class MainActivity extends AppCompatActivity {
+        private Github githubArrayList;
+        private ProgressDialog pDialog;
+        private RecyclerView recyclerView;
+        private GithubAdapter eAdapter;
+        private SearchView searchView;
 
 
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_main);
+                Toolbar toolbar = findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setTitle(R.string.toolbar_title);
 
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.toolbar_title);
+                pDialog = new ProgressDialog(MainActivity.this);
+                pDialog.setMessage("Loading Data.. Please wait...");
+                pDialog.setIndeterminate(false);
+                pDialog.setCancelable(false);
+                pDialog.show();
 
+                //Creating an object of our api interface
+                GithubService api = GithubClient.getApiService();
 
-        pDialog = new ProgressDialog(MainActivity.this);
-        pDialog.setMessage("Loading Data.. Please wait...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(false);
-        pDialog.show();
+                /**
+                 * Calling JSON
+                 */
+                Call<Github> call = api.getData();
 
-        //Creating an object of our api interface
-        GithubService api = GithubClient.getApiService();
+                /**
+                 * Enqueue Callback will be call when get response...
+                 */
+                call.enqueue(new Callback<Github>() {
+                        @Override
+                        public void onResponse(Call<Github> call, Response<Github> response) {
+                                //Dismiss Dialog
+                                pDialog.dismiss();
 
-        /**
-         * Calling JSON
-         */
-        Call<Github> call = api.getData();
+                                if (response.isSuccessful()) {
+                                        /**
+                                         * Got Successfully
+                                         */
+                                        githubArrayList = response.body();
 
-        /**
-         * Enqueue Callback will be call when get response...
-         */
-        call.enqueue(new Callback<Github>() {
-@Override
-public void onResponse(Call<Github> call, Response<Github> response) {
-        //Dismiss Dialog
-        pDialog.dismiss();
+                                        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+                                        eAdapter = new GithubAdapter(Collections.singletonList((Github) githubArrayList));
+                                        RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                        recyclerView.setLayoutManager(eLayoutManager);
+                                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                        recyclerView.setAdapter(eAdapter);
+                                }
+                        }
 
-        if (response.isSuccessful()) {
-        /**
-         * Got Successfully
-         */
-        githubArrayList = response.body();
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        eAdapter = new GithubAdapter(Collections.singletonList((Github)  githubArrayList ));
-        RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(eLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(eAdapter);
+                        @Override
+                        public void onFailure(Call<Github> call, Throwable t) {
+                                pDialog.dismiss();
+                        }
+                });
         }
-        }
 
-@Override
-public void onFailure(Call<Github> call, Throwable t) {
-        pDialog.dismiss();
-        }
-        });
-        }
-        }
+
+
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
                 // Handle action bar item clicks here. The action bar will
@@ -125,8 +127,9 @@ public void onFailure(Call<Github> call, Throwable t) {
                 }
         }
 
-        @Override
-        public void onContactSelected(Contact contact) {
-                Toast.makeText(getApplicationContext(), "Selected: " + contact.getName() + ", " + contact.getPhone(), Toast.LENGTH_LONG).show();
+
+        public void onContactSelected(Github github) {
+                Toast.makeText(getApplicationContext(), "Selected: " + github.getName() + ", " + github.getAvatarUrl() + ", " + github.getFollowers() + ", " + github.getPublicRepos(), Toast.LENGTH_LONG).show();
         }
 }
+

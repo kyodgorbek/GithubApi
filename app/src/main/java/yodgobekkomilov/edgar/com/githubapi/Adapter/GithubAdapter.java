@@ -31,7 +31,7 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 
 
 
-    public GithubAdapter(List<Github> githubs) {
+    public GithubAdapter(List<Github> githubs, GithubAdapterListener listener) {
 
         this.githubs = githubs;
         this.listener = listener;
@@ -114,9 +114,12 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getName().toLowerCase().contains(charString.toLowerCase()) || row.getFollowersUrl().contains(charSequence)) {
-                            filteredList.add(row);
-                        }
+                        if ((row.getName().toLowerCase().contains(charString.toLowerCase()) ||
+                                row.getAvatarUrl().contains(charSequence)))
+                            row.getFollowers().intValue(),  row.getReposUrl().contains(charSequence)){
+                                    filteredList.add(row);
+                            }
+
                     }
 
                     githubListFiltered = filteredList;
