@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
@@ -9,37 +10,59 @@
     android:paddingBottom="13dp">
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/repName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/userName"
+        android:text="@string/rep_name"
         android:textColor="@color/colorPrimaryDark"
         android:padding="18dp"
         android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/avatar"
+    <TextView
+        android:id="@+id/gitUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="18dp"
         android:src="@drawable/ic_launcher_background"
-        android:text="@string/avatar" />
+        android:text="@string/git_url"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/content_description" />
 
     <TextView
-        android:id="@+id/followers"
-        android:layout_width="wrap_content"
+        android:id="@+id/gitDescription"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
+        android:padding="18dp"
         android:text="@string/followers"
-        android:padding="18dp"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="79dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/repositories"
+        android:id="@+id/createdDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/repositories"
         android:padding="18dp"
-        android:textColor="@color/colorAccent" />
+        android:text="@string/created_date"
+        android:textColor="@color/colorAccent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="144dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/forksCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:text="@string/forks_count"
+        android:textColor="@color/colorAccent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="144dp"
+        tools:ignore="MissingConstraints" />
 
 
 

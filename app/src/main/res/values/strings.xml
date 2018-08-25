@@ -3,9 +3,15 @@
     <string name="app_name">GithubApi</string>
     <string name="userName">userName</string>
     <string name="avatar">Ávatars</string>
+    <string name="git_url">Git Url</string>
     <string name="followers">Followers</string>
     <string name="repositories">Repositories</string>
     <string name="search_hint">Search</string>
     <string name="action_search">Search</string>
     <string name="toolbar_title" />
+    <string name="rep_name">Rep Name</string>
+    <string name="git_description">Description</string>
+    <string name="content_description">Content</string>
+    <string name="created_date">Created Date</string>
+    <string name="forks_count">forks count</string>
 </resources>

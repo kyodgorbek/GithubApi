@@ -1,25 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:paddingBottom="13dp">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+
+
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:text="@string/userName"
+        android:textColor="@color/colorPrimaryDark"
+        android:padding="18dp"
+        android:textSize="18sp" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"/>
 
-    </android.support.design.widget.AppBarLayout>
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_description"
+        android:padding="18dp"
+        android:src="@drawable/ic_launcher_background"
+        android:text="@string/avatar"
+        tools:ignore="MissingConstraints"
+         />
 
-    <include layout="@layout/content_main" />
+    <TextView
+        android:id="@+id/followers"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:text="@string/followers"
+        android:textColor="@color/colorAccent"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="79dp"
+        tools:ignore="MissingConstraints" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <TextView
+        android:id="@+id/repositories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:text="@string/repositories"
+        android:textColor="@color/colorAccent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="144dp"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view"/>
+
+
+</LinearLayout>
