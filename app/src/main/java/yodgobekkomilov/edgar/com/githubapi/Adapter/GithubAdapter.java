@@ -32,8 +32,8 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
 
 
     public GithubAdapter(List<Github> githubs, GithubAdapterListener listener) {
-
         this.githubs = githubs;
+
         this.listener = listener;
 
 
