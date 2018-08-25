@@ -21,24 +21,21 @@ import java.util.List;
 
 import yodgobekkomilov.edgar.com.githubapi.R;
 import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
+import yodgobekkomilov.edgar.com.githubapi.pojo.GithubRepo;
 
- public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomViewHolder>  implements Filterable{
+public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomViewHolder> {
 
     private List<Github> githubs;
     private Context context;
-    private GithubAdapterListener listener;
+
     private List<Github> githubListFiltered;
+    GithubRepo githubRepo;
 
 
-
-    public GithubAdapter(List<Github> githubs, GithubAdapterListener listener) {
-        this.githubs = githubs;
-
-        this.listener = listener;
-
+    public GithubAdapter(GithubRepo githubRepo) {
+        this.githubRepo = githubRepo;
 
     }
-
 
 
     @Override
@@ -52,95 +49,41 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
-        Github github = githubListFiltered.get(position);
-        holder.userName.setText(github.getName());
-
-        Picasso.with(holder.avatar.getContext())
-                .load(github.getAvatarUrl())
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground).resize(600, 200).centerCrop().into(holder.avatar);
-                // To fit image into imageView
+        GithubRepo github = githubListFiltered.get(position);
+        holder.repName.setText(github.getName());
+        holder.gitUrl.setText(github.getGitUrl());
+        // To fit image into imageView
 
 
         // To prevent fade animation
-        holder.followers.setText(String.valueOf(github.getFollowers()));
-        holder.repositories.setText(String.valueOf(github.getPublicRepos()));
+        holder.gitDescription.setText(String.valueOf(github.getDescription()));
+        holder.createdDate.setText(String.valueOf(github.getCreatedAt()));
+        holder.forksCount.setText(String.valueOf(github.getForksCount()));
 
     }
 
     @Override
     public int getItemCount() {
 
-             githubListFiltered = Collections.singletonList(new Github());
+        githubListFiltered = Collections.singletonList(new Github());
         return githubListFiltered.size();
     }
 
 
-
-
-
-
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        public TextView userName,  followers, repositories;
-        public ImageView avatar;
+        public TextView repName, gitUrl, gitDescription, createdDate, forksCount;
+
 
         public CustomViewHolder(View view) {
             super(view);
-            userName = (TextView) view.findViewById(R.id.userName);
-            avatar = (ImageView) view.findViewById(R.id.avatar);
-            followers = (TextView) view.findViewById(R.id.followers);
-            repositories = (TextView) view.findViewById(R.id.repositories);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onContactSelected(githubListFiltered.get(getAdapterPosition()));
-                }
-            });
+            repName = (TextView) view.findViewById(R.id.repName);
+            gitUrl = (TextView) view.findViewById(R.id.gitUrl);
+            gitDescription = (TextView) view.findViewById(R.id.gitDescription);
+            createdDate = (TextView) view.findViewById(R.id.createdDate);
+            forksCount = (TextView) view.findViewById(R.id.forksCount);
+
 
         }
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    githubListFiltered = githubs;
-                } else {
-                    List<Github> filteredList = new ArrayList<>();
-                    for (Github row : githubs) {
-
-
-                        if ((row.getName().toLowerCase().contains(charString.toLowerCase()) ||
-                                row.getAvatarUrl().contains(charSequence)))
-
-                            {
-
-                                    filteredList.add(row);
-                            }
-
-                    }
-
-                    githubListFiltered = filteredList;
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = githubs;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                 githubListFiltered = (List<Github>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
-    public interface GithubAdapterListener {
-        void onContactSelected(Github github);
     }
 }
 

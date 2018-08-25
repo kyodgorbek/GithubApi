@@ -10,6 +10,9 @@ public interface GithubService {
     @GET("/users/kyodgorbek")
     Call<Github> getData();
 
+    @GET("/users/kyodgorbek/repos")
+    Call<GithubRepo[]> getRepos();
+
 
 
 }

@@ -6,7 +6,7 @@ package yodgobekkomilov.edgar.com.githubapi.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Github {
+public class Github extends GithubRepo {
 
     @SerializedName("login")
     @Expose
