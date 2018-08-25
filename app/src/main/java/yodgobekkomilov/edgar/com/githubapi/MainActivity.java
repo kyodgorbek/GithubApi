@@ -102,35 +102,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         GithubService github = GithubClient.getApiService();
-        Call githubRepoCall <GithubRepo[]>  = github.getRepos();
-        githubRepoCall.enqueue(new Callback() {
+        final Call<GithubRepo[]> githubRepoCall = github.getRepos();
+        githubRepoCall.enqueue(new Callback<GithubRepo[]>() {
             @Override
-            public void onResponse(Call call, Response response) {
-                GithubRepo   githubRepo = (GithubRepo) response.body();
+            public void onResponse(Call<GithubRepo[]> call, Response<GithubRepo[]> response) {
 
-                   recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+                recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-                    GithubAdapter.GithubAdapterListener param2 = new GithubAdapter.GithubAdapterListener() {
-                        @Override
-                        public void onContactSelected(Github github) {
-
-                        }
-                    };
-                    eAdapter = new GithubAdapter(githubRepo, param2);
-                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
-                   recyclerView.setLayoutManager(eLayoutManager);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(eAdapter);
+                eAdapter = new GithubAdapter((GithubRepo) githubRepoCall);
+                RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(eLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(eAdapter);
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<GithubRepo[]> call, Throwable t) {
 
             }
         });
-
 
 
         /**
@@ -174,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
     }
-
 
 
     @Override
