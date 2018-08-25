@@ -107,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
         githubRepoCall.enqueue(new Callback<GithubRepo[]>() {
             @Override
             public void onResponse(Call<GithubRepo[]> call, Response<GithubRepo[]> response) {
+                GithubRepo[] repos = response.body();
 
                 recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-                eAdapter = new GithubAdapter((GithubRepo) githubRepoCall);
+                eAdapter = new GithubAdapter(repos);
                 RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(eLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
