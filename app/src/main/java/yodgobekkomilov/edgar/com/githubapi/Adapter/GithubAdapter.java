@@ -112,11 +112,12 @@ import yodgobekkomilov.edgar.com.githubapi.pojo.Github;
                     List<Github> filteredList = new ArrayList<>();
                     for (Github row : githubs) {
 
-                        // name match condition. this might differ depending on your requirement
-                        // here we are looking for name or phone number match
+
                         if ((row.getName().toLowerCase().contains(charString.toLowerCase()) ||
                                 row.getAvatarUrl().contains(charSequence)))
-                            row.getFollowers().intValue(),  row.getReposUrl().contains(charSequence)){
+
+                            {
+
                                     filteredList.add(row);
                             }
 
