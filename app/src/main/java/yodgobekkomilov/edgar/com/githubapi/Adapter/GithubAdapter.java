@@ -1,7 +1,9 @@
 package yodgobekkomilov.edgar.com.githubapi.Adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +16,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -72,9 +81,36 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
         return githubRepo.length;
     }
 
-    public String getConvertedDate(String date) {
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public String convertDate(String date) {
+//
+//        String result = "";
+//        org.joda.time.format.DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+//        DateTime from = format.parseDateTime(date);
+//        DateTime now = new DateTime();
+//        Period period = new Period(from, now);
+//        PeriodFormatter formatter = new PeriodFormatterBuilder()
+//                .appendSeconds().appendSuffix(" Sekonds ago\n")
+//                .appendMinutes().appendSuffix(" Minutes ago\n")
+//                .appendHours().appendSuffix(" Hours ago\n")
+//                .appendDays().appendSuffix(" Days ago\n")
+//                .appendWeeks().appendSuffix(" Weeks ago\n")
+//                .appendMonths().appendSuffix(" Months ago\n")
+//                .appendYears().appendSuffix(" Years ago\n")
+//                .printZeroNever()
+//                .toFormatter();
+//        if (period.getDays()<1) {
+//            result = formatter.print(period);
+//        } else {
+//            org.joda.time.format.DateTimeFormatter format24hMore = DateTimeFormat.forPattern("yyyy-MM-dd");
+//            result = format24hMore.print(from);
+//
+//        }
+//        return result;
+//    }
+   public String getConvertedDate(String date) {
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
+        DateFormat outputFormat = new SimpleDateFormat("M/dd -yy, HH:mm");
 
         Date mDate = null;
         try {
