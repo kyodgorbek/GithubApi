@@ -15,4 +15,6 @@
     <string name="created_date">Created Date</string>
     <string name="forks_count">forks count</string>
     <string name="enter_text">Please enter Username?</string>
+    <string name="button">Button</string>
+    <string name="user_name">Name</string>
 </resources>
