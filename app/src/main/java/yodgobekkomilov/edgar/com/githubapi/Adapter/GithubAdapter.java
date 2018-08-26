@@ -82,8 +82,8 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
     }
 
 
-   public String getConvertedDate(String date) {
-        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    public String getConvertedDate(String date) {
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
         DateFormat outputFormat = new SimpleDateFormat("M/dd -yy, HH:mm");
 
         Date mDate = null;
