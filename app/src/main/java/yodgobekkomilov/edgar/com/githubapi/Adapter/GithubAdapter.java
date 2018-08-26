@@ -29,10 +29,10 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
     private Context context;
 
     private List<Github> githubListFiltered;
-    GithubRepo githubRepo;
+    GithubRepo[] githubRepo;
 
 
-    public GithubAdapter(GithubRepo githubRepo) {
+    public GithubAdapter(GithubRepo[] githubRepo) {
         this.githubRepo = githubRepo;
 
     }
@@ -49,7 +49,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
-        GithubRepo github = githubListFiltered.get(position);
+        GithubRepo github = githubRepo[position];
         holder.repName.setText(github.getName());
         holder.gitUrl.setText(github.getGitUrl());
         // To fit image into imageView
@@ -65,8 +65,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
     @Override
     public int getItemCount() {
 
-        githubListFiltered = Collections.singletonList(new Github());
-        return githubListFiltered.size();
+        return githubRepo.length;
     }
 
 
