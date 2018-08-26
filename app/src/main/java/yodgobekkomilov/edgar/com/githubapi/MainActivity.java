@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GithubRepo[]> call, Throwable t) {
-
+              Log.i("Erroror", "Errororlar");
             }
         });
 
