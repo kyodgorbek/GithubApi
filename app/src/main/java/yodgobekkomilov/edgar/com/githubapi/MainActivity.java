@@ -186,28 +186,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        // close search view on back button pressed
-        if (!searchView.isIconified()) {
-            searchView.setIconified(true);
-            return;
-        }
-        super.onBackPressed();
-    }
-
-    private void whiteNotificationBar(View view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int flags = view.getSystemUiVisibility();
-            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-            view.setSystemUiVisibility(flags);
-            getWindow().setStatusBarColor(Color.WHITE);
-        }
-    }
 
 
-    public void onContactSelected(Github github) {
-        Toast.makeText(getApplicationContext(), "Selected: " + github.getName() + ", " + github.getAvatarUrl() + ", " + github.getFollowers() + ", " + github.getPublicRepos(), Toast.LENGTH_LONG).show();
-    }
+
 }
 
