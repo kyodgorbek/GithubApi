@@ -14,8 +14,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -57,7 +61,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
         // To prevent fade animation
         holder.gitDescription.setText(String.valueOf(github.getDescription()));
-        holder.createdDate.setText(String.valueOf(github.getCreatedAt()));
+        holder.createdDate.setText(getConvertedDate(github.getCreatedAt()));
         holder.forksCount.setText(String.valueOf(github.getForksCount()));
 
     }
@@ -68,6 +72,21 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
         return githubRepo.length;
     }
 
+    public String getConvertedDate(String date) {
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
+
+        Date mDate = null;
+        try {
+            mDate = inputFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String outputDateStr = outputFormat.format(mDate);
+
+
+        return outputDateStr;
+    }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         public TextView repName, gitUrl, gitDescription, createdDate, forksCount;
@@ -84,5 +103,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
 
         }
     }
+
+
 }
 

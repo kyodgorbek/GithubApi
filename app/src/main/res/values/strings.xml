@@ -14,4 +14,5 @@
     <string name="content_description">Content</string>
     <string name="created_date">Created Date</string>
     <string name="forks_count">forks count</string>
+    <string name="enter_text">Please enter Username?</string>
 </resources>

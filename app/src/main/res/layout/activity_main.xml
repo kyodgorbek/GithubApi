@@ -8,63 +8,71 @@
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:paddingBottom="13dp">
-
-
+    android:paddingBottom="13dp"
+    tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="18dp"
         android:text="@string/userName"
         android:textColor="@color/colorPrimaryDark"
-        android:padding="18dp"
         android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/content_description"
-        android:padding="18dp"
-        android:src="@drawable/ic_launcher_background"
-        android:text="@string/avatar"
-        tools:ignore="MissingConstraints"
-         />
-
-    <TextView
-        android:id="@+id/followers"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
-        android:padding="18dp"
-        android:text="@string/followers"
-        android:textColor="@color/colorAccent"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="79dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/repositories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="18dp"
-        android:text="@string/repositories"
-        android:textColor="@color/colorAccent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="144dp"
-        tools:ignore="MissingConstraints" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler_view"/>
+        android:orientation="horizontal">
 
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.8">
+
+            <TextView
+                android:id="@+id/followers"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:text="@string/followers"
+                android:textColor="@color/colorAccent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-3dp"
+                tools:layout_editor_absoluteY="79dp" />
+
+            <TextView
+                android:id="@+id/repositories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:text="@string/repositories"
+                android:textColor="@color/colorAccent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="144dp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description"
+            android:padding="18dp"
+            android:src="@drawable/ic_launcher_background"
+            android:text="@string/avatar"
+            android:layout_weight="0.2"
+            tools:ignore="DuplicateIds,MissingConstraints" />
+    </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
