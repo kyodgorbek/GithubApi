@@ -81,35 +81,9 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.CustomView
         return githubRepo.length;
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    public String convertDate(String date) {
-//
-//        String result = "";
-//        org.joda.time.format.DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-//        DateTime from = format.parseDateTime(date);
-//        DateTime now = new DateTime();
-//        Period period = new Period(from, now);
-//        PeriodFormatter formatter = new PeriodFormatterBuilder()
-//                .appendSeconds().appendSuffix(" Sekonds ago\n")
-//                .appendMinutes().appendSuffix(" Minutes ago\n")
-//                .appendHours().appendSuffix(" Hours ago\n")
-//                .appendDays().appendSuffix(" Days ago\n")
-//                .appendWeeks().appendSuffix(" Weeks ago\n")
-//                .appendMonths().appendSuffix(" Months ago\n")
-//                .appendYears().appendSuffix(" Years ago\n")
-//                .printZeroNever()
-//                .toFormatter();
-//        if (period.getDays()<1) {
-//            result = formatter.print(period);
-//        } else {
-//            org.joda.time.format.DateTimeFormatter format24hMore = DateTimeFormat.forPattern("yyyy-MM-dd");
-//            result = format24hMore.print(from);
-//
-//        }
-//        return result;
-//    }
+
    public String getConvertedDate(String date) {
-        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         DateFormat outputFormat = new SimpleDateFormat("M/dd -yy, HH:mm");
 
         Date mDate = null;
