@@ -17,8 +17,8 @@ private  EditText usernameEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        usernameEditText = findViewById(R.id.editText);
+        setContentView(R.layout.search);
+     usernameEditText = findViewById(R.id.editText);
 
          button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -26,11 +26,11 @@ private  EditText usernameEditText;
             public void onClick(View v) {
                 String username = usernameEditText.getText().toString();
 
-                Intent intent = new Intent(SearchActivity.this, NextActivity.class);
+                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                 intent.putExtra("USER_NAME", username);
 
                 startActivity(intent);
-            }
+           }
         });
 
     }

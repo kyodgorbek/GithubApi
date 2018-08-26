@@ -2,6 +2,7 @@ package yodgobekkomilov.edgar.com.githubapi;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setTitle(R.string.toolbar_title);
 
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USER_NAME");
 
         //Creating an object of our api interface
         GithubService api = GithubClient.getApiService();
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
          */
 
 
-        Call<Github> call = api.getData();
+        Call<Github> call = api.getData(username);
 
         call.enqueue(new Callback<Github>() {
             @Override
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         GithubService github = GithubClient.getApiService();
-        final Call<GithubRepo[]> githubRepoCall = github.getRepos();
+        final Call<GithubRepo[]> githubRepoCall = github.getRepos(username);
         githubRepoCall.enqueue(new Callback<GithubRepo[]>() {
             @Override
             public void onResponse(Call<GithubRepo[]> call, Response<GithubRepo[]> response) {

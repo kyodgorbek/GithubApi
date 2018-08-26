@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:id="@+id/editView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:layout_marginTop="148dp"
         android:text="@string/enter_text"
         android:hint="@string/enter_text"
-        android:inputType="text" />
+         />
 
     <EditText
         android:id="@+id/editText"
@@ -26,7 +26,7 @@
         android:gravity="center"
         android:layout_margin="40dp"
         android:inputType="textPersonName"
-        android:text="@string/userName" />
+        android:text="" />
 
     <Button
         android:id="@+id/button"
